@@ -1,0 +1,4 @@
+extends: ../base.yaml
+name: s04_table_overtaking
+description: Waiting parties that fit may be seated ahead of a larger party at the head of the table queue.
+dining: {allow_overtaking: true}

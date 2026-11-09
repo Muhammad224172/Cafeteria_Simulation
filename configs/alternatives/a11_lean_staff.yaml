@@ -1,0 +1,11 @@
+extends: ../base.yaml
+name: a11_lean_staff
+description: 'Staff cut only (no other change): peak 2+2, off-peak 1+1 per area.'
+workers:
+  schedule:
+    AB:
+      experienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]
+      inexperienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]
+    CD:
+      experienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]
+      inexperienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]

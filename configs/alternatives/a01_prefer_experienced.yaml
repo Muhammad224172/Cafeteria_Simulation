@@ -1,0 +1,4 @@
+extends: ../base.yaml
+name: a01_prefer_experienced
+description: 'Dispatch: an idle experienced worker takes a task before an idle inexperienced one.'
+workers: {dispatch: prefer_experienced}

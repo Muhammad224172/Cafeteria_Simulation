@@ -1,0 +1,11 @@
+extends: ../base.yaml
+name: a03_experienced_peak
+description: 'Peak hours (11:30-14:00, 18:00-20:00): 4 experienced + 1 inexperienced per area instead of 3 + 3.'
+workers:
+  schedule:
+    AB:
+      experienced: [4, 4, 4, 2, 2, 2, 2, 4, 4]
+      inexperienced: [1, 1, 1, 2, 2, 2, 2, 1, 1]
+    CD:
+      experienced: [4, 4, 4, 2, 2, 2, 2, 4, 4]
+      inexperienced: [1, 1, 1, 2, 2, 2, 2, 1, 1]

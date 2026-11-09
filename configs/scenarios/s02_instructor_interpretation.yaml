@@ -1,0 +1,7 @@
+extends: ../base.yaml
+name: s02_instructor_interpretation
+description: 'The instructor solution model''s readings: first-member dining time (15*BETA(1,k)+15 in Arena), one
+  meal choice per group, measure 2 averaged until the last diner leaves.'
+dining: {group_eating: first_member}
+routing: {meal_choice: per_group}
+day: {measure2_window: system_empty}

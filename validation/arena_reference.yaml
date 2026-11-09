@@ -1,0 +1,69 @@
+# Reference numbers from the original Arena models, used for validation only.
+# The values were read from the course folder (not part of this repository) as noted under
+# `source`. No model file, report or instructor document is copied here; only aggregate outputs.
+# Measure 1 is converted from minutes (Arena's base unit in that model) to seconds.
+
+instructor_solution_base:
+  description: >-
+    Instructor's solution model for Part 3 (analyst credited in the model: Sinan Yildirim), run with
+    20 replications by the group for Part 3(a). Its replication ends when it is past 20:00 and the
+    cafeteria is empty, so measure 2 is averaged until the last diner leaves.
+  source:
+    - "Ie 305/Last Part Term project/Project Stats1 (Arena output file, run date 2024-01-16, 20 replications)"
+    - "Ie 305/Last Part Term project/Project Stats 2 (Arena output file, run date 2024-01-16, 20 replications)"
+    - "Ie 305/Last Part Term project/New folder (2)/Each_replication.pdf (same run, per-replication report)"
+    - "Ie 305/Last Part Term project/Project Statistics 1.png, Project Statistics 2.png (Output Analyzer CIs)"
+  replications: 20
+  measure1_s:
+    mean: 54.33
+    sd: 5.15
+    half_width_95: 2.41          # Output Analyzer: 0.0402 min
+    per_replication: [51.18, 58.09, 54.63, 71.48, 51.34, 60.39, 48.09, 52.66, 53.50, 54.77,
+                      49.46, 50.44, 54.32, 57.54, 53.82, 51.94, 50.41, 52.40, 51.72, 58.52]
+  measure2:
+    mean: 323.98
+    sd: 16.87
+    half_width_95: 7.9
+    per_replication: [340.87, 326.25, 309.58, 360.98, 308.96, 318.97, 296.96, 326.94, 311.71, 309.93,
+                      348.52, 329.52, 329.26, 327.44, 325.51, 336.22, 297.50, 339.02, 304.07, 331.35]
+  replication_end_min:
+    mean: 577.4                  # after opening, i.e. about 21:07
+    min: 569.0
+    max: 587.0
+  modelling_choices_read_from_model_file:
+    arrivals: one arrival event creates a group of MN(1 + POIS(0.5), 6); schedule 600/450/180/150/450/240 events per hour
+    meal_choice: one line choice per group, before the group is duplicated into members
+    standard_line: B if customers in line B <= customers in line D, else D (customers counted until end of payment)
+    task3_prepared_item_time_s: NORM(8, 2)
+    ready_item_time_s: UNIF(1, 2)
+    task_priorities: container renewal and cutlery refill both at seize priority 1; shelf top-up at priority 2
+    shelf_top_up: one top-up entity per shelf section, so at most one worker fills a given shelf at a time
+    dining_time: 15*BETA(1, group size) + 15 minutes
+    table_choice: SELECT(Dining tables, LRC) for group-size units (largest remaining capacity)
+    stop_rule: TNOW > 510 min and customers in system == 0
+
+instructor_solution_modified_runs:
+  description: >-
+    Later 20-replication runs of a modified copy of the solution model (run dates 2024-01-18). The model
+    file on disk at that date has 4/3 experienced and 2/1 inexperienced workers, two-unit cashiers and a
+    20-unit sauce table, so these appear to be the group's Part 3 alternative(s). Listed for completeness;
+    not used as a validation target.
+  source:
+    - "Ie 305/Last Part Term project/Project Stats1.dat, Project Stats 2.dat (2024-01-18)"
+    - "Ie 305/Last Part Term project/Model 2/*.dat (2024-01-18)"
+  measure1_s_means: [48.20, 47.60]
+  measure2_means: [326.10, 325.99]
+
+group_part2_model:
+  description: >-
+    The group's own Part 2 Arena model (final version, 2024-01-08), one replication of a fixed 8.5 h.
+    Its arrival schedule is 200/150/60/50/150/80 arrival events per hour, it has no worker, shelf or
+    table-capacity logic in the compiled model, and the main-dish branch probability is entered as
+    0.95/100. It is therefore a partial model of the system; it does not report measure 1 directly.
+  source:
+    - "Ie 305/Final_Final_term_project/Term_project.out (one replication)"
+  replications: 1
+  run_length_s: 30600
+  customers_created: 1251
+  customer_wip_time_average: 57.09        # Customer.WIP over the 8.5 h run
+  customer_total_time_mean_s: 1436.7      # arrival to disposal, includes eating

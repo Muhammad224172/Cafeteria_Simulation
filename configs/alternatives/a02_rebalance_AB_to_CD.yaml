@@ -1,0 +1,11 @@
+extends: ../base.yaml
+name: a02_rebalance_AB_to_CD
+description: Move one inexperienced worker from area AB to area CD all day (CD serves about 57% of customers).
+workers:
+  schedule:
+    AB:
+      experienced: [3, 3, 3, 2, 2, 2, 2, 3, 3]
+      inexperienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]
+    CD:
+      experienced: [3, 3, 3, 2, 2, 2, 2, 3, 3]
+      inexperienced: [4, 4, 4, 3, 3, 3, 3, 4, 4]

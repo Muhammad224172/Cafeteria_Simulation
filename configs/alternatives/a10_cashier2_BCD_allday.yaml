@@ -1,0 +1,16 @@
+extends: ../base.yaml
+name: a10_cashier2_BCD_allday
+description: Second cashier at lines B, C, D all day; peak staff 2+2, off-peak 1+1 per area.
+workers:
+  schedule:
+    AB:
+      experienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]
+      inexperienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]
+    CD:
+      experienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]
+      inexperienced: [2, 2, 2, 1, 1, 1, 1, 2, 2]
+lines:
+  extra_cashiers:
+  - {line: B, start: '11:30', end: '20:00'}
+  - {line: C, start: '11:30', end: '20:00'}
+  - {line: D, start: '11:30', end: '20:00'}

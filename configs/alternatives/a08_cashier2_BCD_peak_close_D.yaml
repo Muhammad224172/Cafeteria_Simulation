@@ -1,0 +1,21 @@
+extends: ../base.yaml
+name: a08_cashier2_BCD_peak_close_D
+description: a07 plus line D closed 14:00-18:00.
+workers:
+  schedule:
+    AB:
+      experienced: [2, 2, 2, 2, 2, 2, 2, 2, 2]
+      inexperienced: [2, 2, 2, 2, 2, 2, 2, 2, 2]
+    CD:
+      experienced: [2, 2, 2, 2, 2, 2, 2, 2, 2]
+      inexperienced: [2, 2, 2, 2, 2, 2, 2, 2, 2]
+lines:
+  extra_cashiers:
+  - {line: B, start: '11:30', end: '14:00'}
+  - {line: B, start: '18:00', end: '20:00'}
+  - {line: C, start: '11:30', end: '14:00'}
+  - {line: C, start: '18:00', end: '20:00'}
+  - {line: D, start: '11:30', end: '14:00'}
+  - {line: D, start: '18:00', end: '20:00'}
+  closures:
+  - {line: D, start: '14:00', end: '18:00'}

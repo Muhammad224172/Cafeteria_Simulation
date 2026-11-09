@@ -1,0 +1,15 @@
+extends: ../base.yaml
+name: a06_cashier2_C_peak
+description: Second cashier at line C in peak hours, paid for by the a03 peak staff mix (4 exp + 1 inexp).
+workers:
+  schedule:
+    AB:
+      experienced: [4, 4, 4, 2, 2, 2, 2, 4, 4]
+      inexperienced: [1, 1, 1, 2, 2, 2, 2, 1, 1]
+    CD:
+      experienced: [4, 4, 4, 2, 2, 2, 2, 4, 4]
+      inexperienced: [1, 1, 1, 2, 2, 2, 2, 1, 1]
+lines:
+  extra_cashiers:
+  - {line: C, start: '11:30', end: '14:00'}
+  - {line: C, start: '18:00', end: '20:00'}

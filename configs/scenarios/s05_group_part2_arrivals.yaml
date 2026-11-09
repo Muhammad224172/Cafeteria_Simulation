@@ -1,0 +1,12 @@
+extends: ../base.yaml
+name: s05_group_part2_arrivals
+description: Arrival schedule as entered in the group's Part 2 Arena model (200/150/60/50/150/80 arrival events
+  per hour).
+arrivals:
+  periods:
+  - {start: '11:30', end: '12:00', rate_per_hour: 200}
+  - {start: '12:00', end: '13:00', rate_per_hour: 150}
+  - {start: '13:00', end: '14:00', rate_per_hour: 60}
+  - {start: '14:00', end: '18:00', rate_per_hour: 50}
+  - {start: '18:00', end: '19:00', rate_per_hour: 150}
+  - {start: '19:00', end: '20:00', rate_per_hour: 80}

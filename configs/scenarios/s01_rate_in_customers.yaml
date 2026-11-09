@@ -1,0 +1,4 @@
+extends: ../base.yaml
+name: s01_rate_in_customers
+description: Read the arrival table as customers per hour (event rate = table rate / E[group size]).
+arrivals: {rate_unit: customers}

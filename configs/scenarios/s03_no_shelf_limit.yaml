@@ -1,0 +1,4 @@
+extends: ../base.yaml
+name: s03_no_shelf_limit
+description: Any number of workers may fill the same shelf section at once.
+workers: {max_workers_per_shelf: null}
