@@ -144,7 +144,7 @@ The same rule applied to the instructor model's own pilot (sd 5.2 s) gives 4 rep
 target is loose relative to day-to-day variation in this system.
 ([figure](results/figures/replication_halfwidths.png))
 
-### Part 3(c, d): an equally or less costly alternative
+### Part 3(c, d): a better configuration at no extra cost
 
 **Candidates.** The 11 candidates in `configs/alternatives/` each cost no more than the base
 (143.10). They use four levers:
