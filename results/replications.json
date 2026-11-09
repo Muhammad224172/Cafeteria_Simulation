@@ -1,0 +1,43 @@
+{
+  "target_half_width_s": 10.0,
+  "pilot": {
+    "n0": 20,
+    "mean_s": 47.61603250368512,
+    "sd_s": 2.7181327412055856,
+    "half_width_s": 1.2721252814458812
+  },
+  "n_approx_n0_h0_over_h_squared": 2,
+  "n_exact_t_search": 3,
+  "n_used": 3,
+  "verification_single_run": {
+    "replication_indices": [
+      5000,
+      5002
+    ],
+    "mean_s": 45.72091799507658,
+    "sd_s": 2.6436148720008386,
+    "half_width_s": 6.567103398881304,
+    "meets_target": true
+  },
+  "verification_repeated": {
+    "experiments": 200,
+    "replications_each": 3,
+    "share_half_width_le_target": 0.965,
+    "half_width_median_s": 4.1171582114107075,
+    "half_width_p90_s": 8.664069161254147,
+    "coverage_of_pooled_mean": 0.93,
+    "pooled_mean_s": 46.73571573710455,
+    "pooled_half_width_s": 0.17716096889675712,
+    "pooled_replications": 600
+  },
+  "same_rule_with_instructor_pilot": {
+    "sd_s": 5.155,
+    "half_width_s": 2.41,
+    "n_approx": 2,
+    "n_exact": 4
+  },
+  "measure2_for_reference": {
+    "sd": 50.11043203387973,
+    "n_for_half_width_10_customers": 99
+  }
+}

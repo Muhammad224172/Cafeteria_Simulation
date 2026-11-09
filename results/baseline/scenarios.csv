@@ -1,0 +1,7 @@
+scenario,measure2_window,measure1_s,measure1_hw,measure2,measure2_hw,measure2_system_empty,measure2_system_empty_hw,customers,t_empty_min,table_wait_min,stockout_wait_per_customer_s
+base,lines_empty,47.616,1.272,491.468,23.452,455.022,19.913,3337.900,622.063,59.335,0.416
+s01_rate_in_customers,lines_empty,41.672,0.696,164.377,6.386,158.823,6.018,2238.300,545.167,13.126,0.174
+s02_instructor_interpretation,system_empty,51.244,1.330,316.232,10.447,316.232,10.447,3337.900,575.113,32.463,0.442
+s03_no_shelf_limit,lines_empty,46.773,0.984,494.003,22.852,457.034,19.300,3337.900,622.964,59.847,0.246
+s04_table_overtaking,lines_empty,47.616,1.272,408.128,16.980,379.497,14.490,3337.900,599.322,32.651,0.416
+s05_group_part2_arrivals,lines_empty,37.827,0.398,54.040,1.061,52.425,1.077,1112.250,538.356,0.082,0.012

@@ -1,0 +1,68 @@
+{
+  "screened": 11,
+  "screening_replications": 20,
+  "alpha_familywise": 0.05,
+  "alpha_per_test_screening": 0.004545454545454546,
+  "eligible": [
+    "a06_cashier2_C_peak",
+    "a07_cashier2_BCD_peak",
+    "a08_cashier2_BCD_peak_close_D",
+    "a09_cashier2_all_peak",
+    "a10_cashier2_BCD_allday"
+  ],
+  "selected": "a10_cashier2_BCD_allday",
+  "description": "Second cashier at lines B, C, D all day; peak staff 2+2, off-peak 1+1 per area.",
+  "cost": {
+    "base": 143.10000000000002,
+    "selected": 137.15,
+    "change": -5.950000000000017
+  },
+  "confirmation": {
+    "replication_indices": [
+      10000,
+      10164
+    ],
+    "replications": 165,
+    "alpha_per_test": 0.025,
+    "base_measure1_s": 47.00539808529429,
+    "selected_measure1_s": 41.89257335038669,
+    "measure1": {
+      "mean_diff": -5.112824734907591,
+      "sd_diff": 3.2603021906953966,
+      "n": 165,
+      "t_stat": -20.143967955262404,
+      "p_value": 3.279088399858783e-46,
+      "ci_low": -5.686995090662129,
+      "ci_high": -4.538654379153052,
+      "alpha": 0.025
+    },
+    "relative_change_measure1": -0.10877101233415883,
+    "base_measure2": 492.17206559898233,
+    "selected_measure2": 491.1621939577749,
+    "measure2": {
+      "mean_diff": -1.0098716412074964,
+      "sd_diff": 10.465983795658989,
+      "n": 165,
+      "t_stat": -1.2394473715207748,
+      "p_value": 0.21695060241852232,
+      "ci_low": -2.853031350888589,
+      "ci_high": 0.8332880684735964,
+      "alpha": 0.025
+    },
+    "measure2_system_empty": {
+      "mean_diff": -0.947732151607834,
+      "sd_diff": 9.266497338910566,
+      "n": 165,
+      "t_stat": -1.3137477370832105,
+      "p_value": 0.1907659159068383,
+      "ci_low": -2.5796508396561757,
+      "ci_high": 0.6841865364405076,
+      "alpha": 0.025
+    },
+    "crn_var_ratio_measure1": 0.6240469084989556,
+    "base_wait_cashier_s": 6.929667894032713,
+    "selected_wait_cashier_s": 0.4789087746900936,
+    "base_stockout_wait_per_customer_s": 0.44343201298407847,
+    "selected_stockout_wait_per_customer_s": 0.7157797335875605
+  }
+}

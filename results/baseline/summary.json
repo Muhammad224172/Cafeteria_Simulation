@@ -1,0 +1,66 @@
+{
+  "config": "configs/base.yaml",
+  "seed": 20231128,
+  "replications": 20,
+  "measure1_s": {
+    "mean": 47.61603250368512,
+    "sd": 2.7181327412055856,
+    "n": 20,
+    "half_width": 1.2721252814458812,
+    "alpha": 0.05,
+    "low": 46.34390722223924,
+    "high": 48.888157785131
+  },
+  "measure2": {
+    "mean": 491.46829358116486,
+    "sd": 50.11043203387973,
+    "n": 20,
+    "half_width": 23.452404103781948,
+    "alpha": 0.05,
+    "low": 468.0158894773829,
+    "high": 514.9206976849468
+  },
+  "measure2_window": "lines_empty",
+  "measure2_system_empty": {
+    "mean": 455.021509596687,
+    "sd": 42.5470492338323,
+    "n": 20,
+    "half_width": 19.912631992091118,
+    "alpha": 0.05,
+    "low": 435.1088776045959,
+    "high": 474.9341415887781
+  },
+  "cost_total": 143.10000000000002,
+  "diagnostics_mean": {
+    "n_customers": 3337.9,
+    "t_close_s": 30634.02732735459,
+    "t_empty_s": 37323.799582460175,
+    "measure2_system_empty": 455.021509596687,
+    "avg_in_lines": 5.1896894711871155,
+    "avg_seated": 133.16594110972196,
+    "avg_waiting_for_table": 350.3048268298827,
+    "table_wait_mean_s": 3560.122582722322,
+    "table_wait_frac": 0.9632649102902974,
+    "sojourn_mean_s": 5088.2241560316,
+    "wait_tray_mean_s": 0.7897535329793278,
+    "wait_section_mean_s": 0.8024656076628718,
+    "wait_cutlery_space_mean_s": 1.4831042687505174,
+    "wait_cashier_mean_s": 7.484866369829115,
+    "wait_sauce_mean_s": 0.0003372459651765173,
+    "stockout_waits": 139.3,
+    "stockout_wait_per_customer_s": 0.415511132424726,
+    "cutlery_waits": 18.85,
+    "util_AB_experienced": 0.24607609974081424,
+    "util_AB_inexperienced": 0.30043248126067806,
+    "util_CD_experienced": 0.28551201803121157,
+    "util_CD_inexperienced": 0.33783096130861023,
+    "measure1_line_A_s": 36.912952088202594,
+    "measure1_line_B_s": 47.771160388668555,
+    "measure1_line_C_s": 51.10860307251589,
+    "measure1_line_D_s": 47.395254029984116
+  },
+  "runtime": {
+    "wall_s_per_replication_single_process": 0.7451068461499972,
+    "wall_s_total_parallel": 3.9755205679998653
+  }
+}
