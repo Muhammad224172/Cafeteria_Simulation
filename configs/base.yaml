@@ -1,0 +1,117 @@
+# Base configuration: the current operating policy of the cafeteria.
+# All durations are in seconds unless the key name says otherwise.
+# Clock times are "HH:MM"; the simulation clock starts at 0 = opening time.
+# docs/modelling_decisions.md explains every value that is not stated in the problem.
+
+name: base
+description: Current schedule (3+3 workers per area at peak, 2+2 off-peak), all four lines open.
+
+day:
+  open: "11:30"
+  last_arrival: "20:00"        # no arrivals after this time
+  # Window for measure 2 (time-average number of customers in the cafeteria):
+  #   lines_empty  -> from opening until the first moment after 20:00 at which no
+  #                   customer is in any serving line (the problem's closing rule)
+  #   system_empty -> from opening until the last diner leaves (the instructor model's stop rule)
+  # Both are always computed; this key selects the headline value.
+  measure2_window: lines_empty
+
+arrivals:
+  # Is the rate table in arrival events (groups) or in customers per hour?
+  #   groups    -> each arrival event brings min(1+N, 6) customers (instructor model's reading)
+  #   customers -> event rate = table rate / E[group size]
+  rate_unit: groups
+  periods:
+    - {start: "11:30", end: "12:00", rate_per_hour: 600}
+    - {start: "12:00", end: "13:00", rate_per_hour: 450}
+    - {start: "13:00", end: "14:00", rate_per_hour: 180}
+    - {start: "14:00", end: "18:00", rate_per_hour: 150}
+    - {start: "18:00", end: "19:00", rate_per_hour: 450}
+    - {start: "19:00", end: "20:00", rate_per_hour: 240}
+  group_size: {poisson_mean: 0.5, max: 6}
+
+routing:
+  meal_mix: {vegan: 0.10, standard: 0.60, salad: 0.30}   # vegan -> A, salad -> C, standard -> B or D
+  # per_customer: each member draws a meal type; the standard eaters of one group
+  #               join the same B/D line, chosen when the group arrives
+  # per_group:    one draw for the whole group (instructor model)
+  meal_choice: per_customer
+  # Length used to compare B and D: customers who joined the line and have not finished paying.
+  tie_break: B
+
+stations:
+  walk: [1, 2]                     # UNIF between consecutive sections
+  tray: [1, 2]
+  items:                           # probability the customer wants the item, UNIF pick time
+    dessert: {p: 0.60, time: [2, 5]}
+    main:    {p: 0.95, time: [2, 5]}
+    side:    {p: 0.75, time: [2, 5]}
+    soup:    {p: 0.90, time: [2, 5]}
+  cutlery: [3, 6]
+  payment:
+    credit_card: {p: 0.10, tria: [1, 4, 7]}
+    cash:        {p: 0.10, tria: [10, 15, 20]}
+    university_card:               # remaining 80 %
+      enough_credit_p: 0.95
+      enough: [1, 4, 7]
+      top_up: [40, 70, 100]
+
+sauce:
+  p: 0.60
+  walk: [5, 15]
+  time: [5, 15, 30]
+  capacity: 10
+
+dining:
+  tables: 24
+  seats: 6
+  eat_minutes: [15, 30]            # per person; a group leaves when its last member finishes
+  allow_overtaking: false          # false: strict FIFO queue for tables
+  # last_member: the group's dining time is the max of its members' eating times (the problem).
+  # first_member: the min instead. This reproduces 15*BETA(1, k)+15 in Arena's BETA(beta, alpha)
+  #               parameterisation, as written in the instructor's solution model (validation only).
+  group_eating: last_member
+
+supplies:
+  shelf_capacity: {dessert: 10, main: 5, side: 5, soup: 5}
+  container_units: {dessert: 40, main: 45, side: 45, soup: 50}
+  cutlery_units: 100
+  container_replace_mean: 40       # Task 1, EXPO mean (experienced worker)
+  cutlery_refill_mean: 40          # Task 2, EXPO mean
+  ready_item_time: [1, 2]          # Task 3 for dessert and salad, UNIF
+  # Task 3 for main / side / soup. The measurement file was not available; these are the
+  # parameters used in the instructor's solution model (NORM(8, 2) s). Draws are truncated at 0.
+  prepared_item_time: {mean: 8.0, sd: 2.0}
+  ready_main_lines: [C]            # line C's main dish is a bowl of salad (a ready item)
+  start_full: true                 # shelves and containers are full at opening
+
+workers:
+  inexperienced_slowdown: 1.4      # inexperienced task time = 1.4 x experienced time
+  # Which idle worker takes a new task: longest_idle | prefer_experienced | random
+  dispatch: longest_idle
+  # At most this many workers fill the same shelf section at the same time (null = no limit).
+  max_workers_per_shelf: 1
+  # Shift change: a worker whose shift ends finishes the task in hand, then leaves.
+  schedule:
+    breakpoints: ["11:30", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"]
+    # The last entry applies from 19:00 until the end of the day ("and after").
+    AB:
+      experienced:   [3, 3, 3, 2, 2, 2, 2, 3, 3]
+      inexperienced: [3, 3, 3, 2, 2, 2, 2, 3, 3]
+    CD:
+      experienced:   [3, 3, 3, 2, 2, 2, 2, 3, 3]
+      inexperienced: [3, 3, 3, 2, 2, 2, 2, 3, 3]
+
+lines:
+  # Optional closures of line B or D, e.g. [{line: D, start: "14:00", end: "18:00"}].
+  # Customers already in the line finish; new standard customers use the other line.
+  closures: []
+  # Optional second cashier at a line for given hours, e.g. [{line: C, start: "11:30", end: "14:00"}].
+  extra_cashiers: []
+
+costs:
+  inexperienced_wage: 1.0          # cost unit = one inexperienced worker-hour
+  experienced_multiplier: 1.3
+  cashier_multiplier: 1.3          # cashiers are paid like experienced workers
+  paid_until: "20:00"              # no pay after 20:00
+  cashier_paid_when_line_closed: false
